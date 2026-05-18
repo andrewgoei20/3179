@@ -115,50 +115,8 @@
 
         vegaEmbed('#attendance_chart', 'js/ao_attendance.json', { actions: false });
 
-        const mapPlaceholderSpec = {
-            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-            "width": 430,
-            "height": 250,
-            "data": {
-                "values": [
-                    {"text": "World champion map", "x": 5, "y": 3.3},
-                    {"text": "Add topojson + champion country data", "x": 5, "y": 2.5}
-                ]
-            },
-            "layer": [
-                {
-                    "mark": {
-                        "type": "rect",
-                        "cornerRadius": 18,
-                        "color": "#e8f2f3",
-                        "stroke": "#c8dde0"
-                    },
-                    "encoding": {
-                        "x": {"datum": 0},
-                        "x2": {"datum": 10},
-                        "y": {"datum": 0},
-                        "y2": {"datum": 6}
-                    }
-                },
-                {
-                    "mark": {
-                        "type": "text",
-                        "fontSize": 20,
-                        "fontWeight": "bold",
-                        "color": "#0f5c4d"
-                    },
-                    "encoding": {
-                        "x": {"field": "x", "type": "quantitative", "axis": null},
-                        "y": {"field": "y", "type": "quantitative", "axis": null},
-                        "text": {"field": "text"}
-                    }
-                }
-            ],
-            "config": {
-                "view": {"stroke": null}
-            }
-        };
-        vegaEmbed('#map_chart', mapPlaceholderSpec, { actions: false });
+        vegaEmbed('#map_chart', 'js/ao_country_map.json', { actions: false });
+
     </script>
 </body>
 </html>
