@@ -1,0 +1,101 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 380,
+  "height": 270,
+  "background": "#fffdf9",
+  "data": {
+    "url": "../data/ao_attendance.csv"
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area",
+        "color": "#9fd3c7",
+        "opacity": 0.82
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "ordinal",
+          "title": null,
+          "axis": {
+            "labelAngle": 0,
+            "labelFontSize": 11,
+            "domain": false,
+            "tickSize": 0,
+            "labelPadding": 8
+          }
+        },
+        "y": {
+          "field": "attendance",
+          "type": "quantitative",
+          "title": "Attendance",
+          "scale": {
+            "domain": [0, 1400000]
+          },
+          "axis": {
+            "values": [0, 400000, 800000, 1200000],
+            "labelExpr": "datum.value == 0 ? '0' : datum.value >= 1000000 ? format(datum.value/1000000, '.1f') + 'M' : format(datum.value/1000, '.0f') + 'K'",
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "gridColor": "#e8e2d8",
+            "domain": false
+          }
+        },
+        "tooltip": [
+          { "field": "year", "type": "ordinal", "title": "Year" },
+          { "field": "attendance", "type": "quantitative", "title": "Attendance", "format": "," }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "line",
+        "color": "#0f5c4d",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "attendance", "type": "quantitative" }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 75,
+        "color": "#ffffff",
+        "stroke": "#0f5c4d",
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "attendance", "type": "quantitative" }
+      }
+    },
+    {
+      "transform": [
+        { "filter": "datum.year == 2026" }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "dy": -8,
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "color": "#0f5c4d"
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "ordinal" },
+        "y": { "field": "attendance", "type": "quantitative" },
+        "text": { "field": "attendance", "type": "quantitative", "format": "," }
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}
