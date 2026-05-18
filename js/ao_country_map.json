@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 430,
+  "height": 250,
+  "background": "#fffdf9",
+  "projection": {
+    "type": "equalEarth"
+  },
+  "data": {
+    "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+    "format": {
+      "type": "topojson",
+      "feature": "countries"
+    }
+  },
+  "transform": [
+    {
+      "lookup": "id",
+      "from": {
+        "data": {
+          "url": "data/ao_country_titles_map.csv"
+        },
+        "key": "id",
+        "fields": ["country", "titles"]
+      }
+    }
+  ],
+  "mark": {
+    "type": "geoshape",
+    "stroke": "#ffffff",
+    "strokeWidth": 0.5
+  },
+  "encoding": {
+    "color": {
+      "condition": {
+        "test": "isValid(datum.titles)",
+        "field": "titles",
+        "type": "quantitative",
+        "scale": {
+          "scheme": "teals"
+        },
+        "legend": {
+          "title": "Singles titles"
+        }
+      },
+      "value": "#e6e6e6"
+    },
+    "tooltip": [
+      {
+        "field": "country",
+        "type": "nominal",
+        "title": "Country"
+      },
+      {
+        "field": "titles",
+        "type": "quantitative",
+        "title": "Titles"
+      }
+    ]
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  }
+}
