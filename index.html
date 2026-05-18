@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How the Australian Open Became a Global Sporting Event</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+    <main class="page">
+        <section class="hero">
+            <h1>How has the Australian Open grown into a global sporting event?</h1>
+            <p>
+                Held in Melbourne, the Australian Open has grown from a historic national championship
+                into one of the most internationally recognised events in tennis. This visual story
+                explores that growth through key milestones, champion geography, and the countries
+                that have shaped the tournament’s history.
+            </p>
+
+            <div class="hero-grid">
+                <div class="hero-card">
+                    <strong>Domain</strong>
+                    Australian Open history and global reach
+                </div>
+                <div class="hero-card">
+                    <strong>Audience</strong>
+                    Average Australian viewer
+                </div>
+                <div class="hero-card">
+                    <strong>Story focus</strong>
+                    Growth, international champions, and global identity
+                </div>
+            </div>
+        </section>
+
+        <div class="content">
+            <section class="section">
+                <div class="section-header">
+                    <h2>From historic championship to global event</h2>
+                    <p>
+                        The Australian Open’s global profile did not emerge all at once. Venue changes,
+                        professionalisation, and record attendance all helped transform it from a local
+                        championship into a modern international event.
+                    </p>
+                </div>
+
+                <div class="grid-2 section-one-layout">
+                    <article class="card">
+                        <h3>Key milestones in the Australian Open’s growth</h3>
+                        <div class="sub">From early championships to Melbourne Park and record-breaking crowds</div>
+                        <div id="timeline_chart" class="viz"></div>
+                    </article>
+                
+
+                    <article class="card">
+                        <h3>Attendance has surged in recent years</h3>
+                        <div class="sub">Three-week attendance shows the Australian Open’s growing scale</div>
+                        <div id="attendance_chart" class="viz"></div>
+                    </article>
+                </div>
+            <section>
+        <section class="section">
+
+            <section class="section">
+                <div class="section-header">
+                    <h2>Where global success comes from</h2>
+                    <p>
+                        Even though the tournament is held in Australia, its champions come from many parts
+                        of the world. These charts compare the geography of winners and the countries with
+                        the strongest title histories.
+                    </p>
+                </div>
+
+                <div class="grid-2">
+                    <article class="card">
+                        <h3>Champion countries</h3>
+                        <div class="sub">A world view of the nations that have produced Australian Open singles champions</div>
+                        <div id="map_chart" class="viz"></div>
+                    </article>
+
+                    <article class="card">
+                        <h3>Top countries by singles titles</h3>
+                        <div class="sub">A ranking of the countries with the strongest title records in Melbourne</div>
+                        <div id="country_bar_chart" class="viz"></div>
+                    </article>
+                </div>
+            </section>
+
+            <div class="meta-footer">
+                <div class="meta-box">
+                    <strong>Sources</strong><br>
+                    Australian Open Honour Roll, Australian Open history articles, and Australian Open By the Numbers reports.
+                </div>
+                <div class="meta-box">
+                    <strong>Author</strong><br>
+                    Andrew Oei &nbsp;|&nbsp; 18 May 2026
+                </div>
+            </div>
+
+            <footer>
+                This page is part of a single-scroll visual narrative about how the Australian Open developed into a global sporting event.
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        vegaEmbed('#timeline_chart', 'js/ao_timeline.json', { actions: false });
+
+        vegaEmbed('#country_bar_chart', 'js/ao_country_titles.json', { actions: false });
+
+        vegaEmbed('#attendance_chart', 'js/ao_attendance.json', { actions: false });
+
+        const mapPlaceholderSpec = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+            "width": 430,
+            "height": 250,
+            "data": {
+                "values": [
+                    {"text": "World champion map", "x": 5, "y": 3.3},
+                    {"text": "Add topojson + champion country data", "x": 5, "y": 2.5}
+                ]
+            },
+            "layer": [
+                {
+                    "mark": {
+                        "type": "rect",
+                        "cornerRadius": 18,
+                        "color": "#e8f2f3",
+                        "stroke": "#c8dde0"
+                    },
+                    "encoding": {
+                        "x": {"datum": 0},
+                        "x2": {"datum": 10},
+                        "y": {"datum": 0},
+                        "y2": {"datum": 6}
+                    }
+                },
+                {
+                    "mark": {
+                        "type": "text",
+                        "fontSize": 20,
+                        "fontWeight": "bold",
+                        "color": "#0f5c4d"
+                    },
+                    "encoding": {
+                        "x": {"field": "x", "type": "quantitative", "axis": null},
+                        "y": {"field": "y", "type": "quantitative", "axis": null},
+                        "text": {"field": "text"}
+                    }
+                }
+            ],
+            "config": {
+                "view": {"stroke": null}
+            }
+        };
+        vegaEmbed('#map_chart', mapPlaceholderSpec, { actions: false });
+    </script>
+</body>
+</html>
