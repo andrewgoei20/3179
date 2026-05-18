@@ -4,7 +4,7 @@
   "height": 270,
   "background": "#fffdf9",
   "data": {
-    "url": "../data/ao_attendance.csv"
+    "url": "data/ao_attendance.csv"
   },
   "layer": [
     {
